@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>批判性思维实操指南 · 学会提问</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --surface2: #F2EFE8;
+    --ink: #1C1A17;
+    --ink2: #4A4640;
+    --ink3: #8A8480;
+    --rule: #E0DCD4;
+    --accent: #2D4A3E;
+    --accent2: #8B4513;
+    --gold: #B8933A;
+    --blue: #2B4B7A;
+    --coral: #8B3A2A;
+    --serif: 'Noto Serif SC', 'SimSun', Georgia, serif;
+    --sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: #1A3A6B;
+    color: #F0F5FF;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 41px
+    );
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+  header h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+  .header-sub {
+    font-size: 15px;
+    color: rgba(210,225,255,0.75);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .header-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: rgba(180,205,255,0.5);
+    letter-spacing: 0.08em;
+  }
+  .header-meta span { display: flex; align-items: center; gap: 6px; }
+  .header-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(180,205,255,0.3); }
+
+  /* ─── NAV ─── */
+  .toc-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .toc-bar::-webkit-scrollbar { display: none; }
+  .toc-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: var(--ink3);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .toc-link:hover { color: var(--ink); background: var(--bg); }
+  .toc-link.active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+  .toc-num {
+    font-size: 10px;
+    background: var(--surface2);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--ink3);
+    font-weight: 400;
+  }
+
+  /* ─── LAYOUT ─── */
+  main { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+
+  /* ─── SECTION ─── */
+  .section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 60px;
+  }
+  .section-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .step-badge {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+  }
+  .step-badge .n { font-size: 9px; color: var(--ink3); letter-spacing: 0.05em; }
+  .step-badge .num { font-size: 18px; font-weight: 500; color: var(--ink); line-height: 1; font-family: var(--serif); }
+  .section-title-wrap { flex: 1; }
+  .section-en { font-size: 11px; letter-spacing: 0.15em; color: var(--ink3); text-transform: uppercase; margin-bottom: 4px; font-weight: 300; }
+  .section-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--ink); letter-spacing: 0.03em; }
+
+  /* ─── GRID ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+  @media (max-width: 600px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .card-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+  .card-val { font-size: 14px; color: var(--ink); line-height: 1.6; }
+
+  /* ─── QUESTION LIST ─── */
+  .q-label { font-size: 10px; letter-spacing: 0.12em; color: var(--ink3); text-transform: uppercase; margin-bottom: 10px; font-weight: 400; }
+  .q-list { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.5rem; }
+  .q-list li {
+    font-size: 14px;
+    color: var(--ink2);
+    padding: 11px 14px 11px 36px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    line-height: 1.6;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+  .q-list li:hover { border-color: #C0BAB0; }
+  .q-list li::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ink3);
+  }
+
+  /* ─── EXAMPLE BOX ─── */
+  .example {
+    background: var(--surface2);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 1.25rem;
+  }
+  .example-caption {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .example-body { font-size: 14px; color: var(--ink2); line-height: 1.8; }
+  .example-body strong { color: var(--ink); font-weight: 500; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 12px;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    color: var(--ink2);
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* ─── TIP ─── */
+  .tip {
+    font-size: 13px;
+    color: var(--ink3);
+    line-height: 1.7;
+    padding: 12px 16px;
+    border-left: 2px solid var(--rule);
+    background: var(--surface);
+    border-radius: 0 6px 6px 0;
+    margin-top: 1rem;
+  }
+  .tip strong { color: var(--ink2); font-weight: 500; }
+
+  /* ─── FALLACY LIST ─── */
+  .fallacy-list { display: flex; flex-direction: column; gap: 10px; }
+  .fallacy-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .fallacy-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--ink3);
+    margin-top: 1px;
+    font-family: var(--serif);
+  }
+  .fallacy-body { flex: 1; }
+  .fallacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .fallacy-desc { font-size: 13px; color: var(--ink3); line-height: 1.6; }
+  .fallacy-eg { font-style: italic; color: var(--ink2); }
+
+  /* ─── DIVIDER ─── */
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 1.5rem 0; }
+
+  /* ─── CHECKLIST SECTION ─── */
+  .checklist-group { margin-bottom: 1.75rem; }
+  .checklist-group-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+    padding-left: 2px;
+  }
+  .check-list { display: flex; flex-direction: column; gap: 6px; }
+  .check-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .check-row:hover { border-color: #C0BAB0; background: var(--surface); }
+  .check-row.done { background: var(--surface2); }
+  .check-row.done label { color: var(--ink3); text-decoration: line-through; text-decoration-color: var(--rule); }
+  .check-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--ink);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .check-row label { font-size: 13px; color: var(--ink2); cursor: pointer; line-height: 1.5; user-select: none; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: rgba(247,245,240,0.45);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    line-height: 2;
+  }
+  footer strong { color: rgba(247,245,240,0.7); font-weight: 400; }
+
+  /* ─── PROGRESS ─── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 200;
+    transition: width 0.1s linear;
+    width: 0%;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .section { animation: fadeUp 0.5s ease both; }
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.10s; }
+  .section:nth-child(3) { animation-delay: 0.15s; }
+  .section:nth-child(4) { animation-delay: 0.20s; }
+  .section:nth-child(5) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-eyebrow">Neil Browne · Asking the Right Questions</div>
+  <h1>批判性思维实操指南</h1>
+  <p class="header-sub">10个核心步骤，从接收信息到形成判断。每一步附关键问题与常见陷阱。</p>
+  <div class="header-meta">
+    <span>10 个步骤</span>
+    <span class="dot"></span>
+    <span>基于《学会提问》</span>
+    <span class="dot"></span>
+    <span>尼尔·布朗 著</span>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="toc-bar" id="toc">
+  <a class="toc-link" href="#s1"><span class="toc-num">01</span>论题</a>
+  <a class="toc-link" href="#s2"><span class="toc-num">02</span>结论</a>
+  <a class="toc-link" href="#s3"><span class="toc-num">03</span>理由</a>
+  <a class="toc-link" href="#s4"><span class="toc-num">04</span>歧义</a>
+  <a class="toc-link" href="#s5"><span class="toc-num">05</span>假设</a>
+  <a class="toc-link" href="#s6"><span class="toc-num">06</span>谬误</a>
+  <a class="toc-link" href="#s7"><span class="toc-num">07</span>证据</a>
+  <a class="toc-link" href="#s8"><span class="toc-num">08</span>竞争原因</a>
+  <a class="toc-link" href="#s9"><span class="toc-num">09</span>统计数据</a>
+  <a class="toc-link" href="#s10"><span class="toc-num">10</span>综合清单</a>
+</nav>
+
+<main>
+
+  <!-- S1 -->
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">01</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">What is the issue?</div>
+        <h2 class="section-title">论题是什么？</h2>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">描述性论题</div>
+        <div class="card-val">关于世界是怎样的事实争议——可以通过证据验证</div>
+      </div>
+      <div class="card">
+        <div class="card-label">规定性论题</div>
+        <div class="card-val">关于应该怎样的价值判断争议——涉及主观立场</div>
+      </div>
+    </div>
+    <div class="q-label">核心问题</div>
+    <ul class="q-list">
+      <li>作者/演讲者试图让我相信或接受什么？</li>
+      <li>这是一个事实问题还是价值观问题？</li>
+      <li>争议的焦点到底是什么？</li>
+    </ul>
+    <div class="example">
+      <div class="example-caption">示例识别</div>
+      <div class="example-body">
+        <span class="tag">规定性</span>"政府应该限制社交媒体使用时间吗？"<br>
+        <span class="tag">描述性</span>"社交媒体使用是否导致青少年焦虑？"
+      </div>
+    </div>
+    <div class="tip"><strong>注意：</strong>很多争论混淆了两种论题类型。先辨别清楚，才能选对分析路径。规定性论题无法仅靠数据解决，必须涉及价值权衡。</div>
+  </section>
+
+  <!-- S2 -->
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">02</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">What is the conclusion?</div>
+        <h2 class="section-title">结论是什么？</h2>
+      </div>
+    </div>
+    <div class="q-label">结论的识别技巧</div>
+    <ul class="q-list">
+      <li>作者最终想让你做什么或相信什么？</li>
+      <li>找"因此""所以""由此可见""总之"等信号词</li>
+      <li>结论通常在段落末尾，或文章开头（倒金字塔结构）</li>
+      <li>去掉所有理由，剩下的核心断言就是结论</li>
+    </ul>
+    <div class="example">
+      <div class="example-caption">常见陷阱</div>
+      <div class="example-body">把描述事实当成结论——作者可能陈述了大量数据，但真正的结论是<strong>隐含在其中的价值判断</strong>。例如，列举犯罪统计数据，结论却是"应该加强管控"。</div>
+    </div>
+    <div class="tip"><strong>自问：</strong>作者写这篇文章，最终目的是让读者采纳哪一个具体立场？</div>
+  </section>
+
+  <!-- S3 -->
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">03</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">What are the reasons?</div>
+        <h2 class="section-title">理由是什么？</h2>
+      </div>
+    </div>
+    <div class="q-label">核心问题</div>
+    <ul class="q-list">
+      <li>作者用什么来支撑结论？</li>
+      <li>找"因为""由于""研究表明""数据显示"等信号词</li>
+      <li>理由和结论的区别：理由是支撑，结论是被支撑的</li>
+    </ul>
+    <hr class="rule">
+    <div class="example">
+      <div class="example-caption">结构化分析</div>
+      <div class="example-body">
+        将内容拆解为：<br><br>
+        <strong>理由 1</strong> + <strong>理由 2</strong> + <strong>理由 3</strong><br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;↓<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<strong>结论</strong>
+      </div>
+    </div>
+    <div class="tip"><strong>注意：</strong>情绪化的表达（"这太荒谬了！"）不是理由，只是修辞。要区分"理由"与"情绪渲染"——前者可以被质疑，后者只是操控感情。</div>
+  </section>
+
+  <!-- S4 -->
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">04</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">Are there ambiguous words?</div>
+        <h2 class="section-title">是否存在歧义？</h2>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">语义歧义</div>
+        <div class="card-val">"成功""公平""暴力"等词有多个含义，作者用的是哪一种？</div>
+      </div>
+      <div class="card">
+        <div class="card-label">模糊量词</div>
+        <div class="card-val">"大多数""很多""显著"缺乏精确定义，数量界限在哪里？</div>
+      </div>
+    </div>
+    <div class="q-label">追问方法</div>
+    <ul class="q-list">
+      <li>论证中有哪些关键词语可以有多种解释？</li>
+      <li>作者使用这个词时，具体指哪种含义？</li>
+      <li>如果换一种解读，结论还成立吗？</li>
+    </ul>
+    <div class="example">
+      <div class="example-caption">经典案例</div>
+      <div class="example-body">"这部电影很暴力，不应该放映。" — "暴力"是指：真实伤害画面？战争题材？动作打斗？不同定义得出完全不同的结论。</div>
+    </div>
+  </section>
+
+  <!-- S5 -->
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">05</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">What are the assumptions?</div>
+        <h2 class="section-title">隐含假设是什么？</h2>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">价值观假设</div>
+        <div class="card-val">作者优先考虑哪些价值？自由 vs 安全？效率 vs 公平？</div>
+      </div>
+      <div class="card">
+        <div class="card-label">描述性假设</div>
+        <div class="card-val">作者关于世界运作方式的未经证明的信念</div>
+      </div>
+    </div>
+    <div class="q-label">挖掘假设的方法</div>
+    <ul class="q-list">
+      <li>理由如何才能推导出结论？中间缺少什么前提？</li>
+      <li>如果持对立立场，我会优先什么价值？</li>
+      <li>作者对"人性""社会""因果"做了哪些默认判断？</li>
+      <li>这些假设合理吗？有证据支撑吗？</li>
+    </ul>
+    <div class="tip"><strong>关键：</strong>假设越隐蔽，对论证影响越大。找到核心假设 = 找到论证最脆弱的地方。</div>
+  </section>
+
+  <!-- S6 -->
+  <section class="section" id="s6">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">06</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">Are there any fallacies?</div>
+        <h2 class="section-title">是否存在逻辑谬误？</h2>
+      </div>
+    </div>
+    <div class="fallacy-list">
+      <div class="fallacy-item">
+        <div class="fallacy-num">一</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">人身攻击（Ad Hominem）</div>
+          <div class="fallacy-desc">攻击对方人格而非论点。<span class="fallacy-eg">"他只是个商人，他懂什么政策？"</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">二</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">滑坡谬误</div>
+          <div class="fallacy-desc">假定一步导致不可避免的连锁反应。<span class="fallacy-eg">"允许安乐死，就会导致滥杀老人。"</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">三</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">诉诸大众</div>
+          <div class="fallacy-desc">用多数人认同代替逻辑。<span class="fallacy-eg">"大家都这样想，所以一定是对的。"</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">四</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">诉诸权威</div>
+          <div class="fallacy-desc">以专家身份代替论据，且该专家领域不匹配。<span class="fallacy-eg">"诺贝尔奖得主说了，肯定没错。"</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">五</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">虚假两难</div>
+          <div class="fallacy-desc">将复杂问题简化为非此即彼。<span class="fallacy-eg">"要么支持我，要么反对国家。"</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">六</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">相关即因果</div>
+          <div class="fallacy-desc">把同时发生误认为因果关系。<span class="fallacy-eg">"犯罪率上升时冰激凌销量也上升，所以冰激凌导致犯罪。"</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 -->
+  <section class="section" id="s7">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">07</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">How good is the evidence?</div>
+        <h2 class="section-title">证据有多可靠？</h2>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">个人经验 / 案例</div>
+        <div class="card-val">生动但不具代表性。问：这是例外还是规律？</div>
+      </div>
+      <div class="card">
+        <div class="card-label">专家意见</div>
+        <div class="card-val">需确认专业领域是否匹配，是否存在利益冲突。</div>
+      </div>
+      <div class="card">
+        <div class="card-label">研究与数据</div>
+        <div class="card-val">样本量够吗？方法论有缺陷吗？能否被复现？</div>
+      </div>
+      <div class="card">
+        <div class="card-label">类比推理</div>
+        <div class="card-val">类比对象与原问题足够相似吗？关键差异被忽略了吗？</div>
+      </div>
+    </div>
+    <div class="q-label">追问清单</div>
+    <ul class="q-list">
+      <li>证据来自哪里？来源是否中立？有无资金或立场影响？</li>
+      <li>是否有反面证据被选择性忽略？</li>
+      <li>该证据真的能支撑这个结论吗？还是只是相关？</li>
+    </ul>
+  </section>
+
+  <!-- S8 -->
+  <section class="section" id="s8">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">08</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">Are there rival causes?</div>
+        <h2 class="section-title">还有哪些竞争性解释？</h2>
+      </div>
+    </div>
+    <div class="q-label">核心问题</div>
+    <ul class="q-list">
+      <li>除了作者的解释，还有什么其他原因能解释这个现象？</li>
+      <li>是否存在第三变量同时影响了两个变量？</li>
+      <li>时间顺序上的"先后"真的等于"因果"吗？</li>
+    </ul>
+    <div class="example">
+      <div class="example-caption">实例分析</div>
+      <div class="example-body">
+        <strong>论断：</strong>"该学区提高了教师薪资，成绩随后上升，所以高薪是原因。"<br><br>
+        <strong>竞争性解释：</strong><br>
+        · 同期引入了新课程体系<br>
+        · 生源结构发生了变化<br>
+        · 全国教育政策改革<br>
+        · 测试标准被调低
+      </div>
+    </div>
+    <div class="tip"><strong>原则：</strong>相关性 ≠ 因果性。永远追问：还有没有更简单或更合理的解释？</div>
+  </section>
+
+  <!-- S9 -->
+  <section class="section" id="s9">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">09</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">Are the statistics deceptive?</div>
+        <h2 class="section-title">统计数据是否有欺骗性？</h2>
+      </div>
+    </div>
+    <div class="fallacy-list">
+      <div class="fallacy-item">
+        <div class="fallacy-num">一</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">平均数的误导</div>
+          <div class="fallacy-desc">均值、中位数、众数含义不同。<span class="fallacy-eg">"平均工资"背后可能极度不均。</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">二</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">基数问题</div>
+          <div class="fallacy-desc">"增长了100%"——从1变成2，还是从100万变成200万？<span class="fallacy-eg">基数不同，意义天差地别。</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">三</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">样本偏差</div>
+          <div class="fallacy-desc">受访者是自愿参与的吗？样本能代表总体吗？<span class="fallacy-eg">自愿响应者通常有强烈倾向，不代表多数。</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">四</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">图表操控</div>
+          <div class="fallacy-desc">截断纵轴、改变比例尺，<span class="fallacy-eg">让微小变化看起来显著，让巨大差异显得微不足道。</span></div>
+        </div>
+      </div>
+      <div class="fallacy-item">
+        <div class="fallacy-num">五</div>
+        <div class="fallacy-body">
+          <div class="fallacy-title">问卷措辞</div>
+          <div class="fallacy-desc">双重否定、引导性提问让受访者困惑或被引导。<span class="fallacy-eg">"你是否反对禁止儿童看这类节目？"</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="q-label" style="margin-top:1.25rem">追问</div>
+    <ul class="q-list">
+      <li>谁做的统计？资金来源是什么？有无利益驱动？</li>
+      <li>同样的数据，换一种呈现方式结论还成立吗？</li>
+    </ul>
+  </section>
+
+  <!-- S10 -->
+  <section class="section" id="s10">
+    <div class="section-head">
+      <div class="step-badge"><span class="n">STEP</span><span class="num">10</span></div>
+      <div class="section-title-wrap">
+        <div class="section-en">Comprehensive evaluation checklist</div>
+        <h2 class="section-title">综合评估清单</h2>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-label">阅读 / 听讲前</div>
+      <div class="check-list">
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>我对这个话题已有的立场是什么？（警惕确认偏误）</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>我的情绪状态是否会影响判断？</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-label">分析过程中</div>
+      <div class="check-list">
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>论题类型（描述性 / 规定性）已识别</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>结论已清晰找到，与理由已区分</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>主要理由已列出，信号词已标注</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>关键歧义词已澄清其具体含义</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>价值观假设与描述性假设已挖掘</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>六大常见逻辑谬误已逐一检查</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>证据类型、来源与可靠性已评估</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>竞争性解释（其他原因）已考虑</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>统计数据的呈现方式已核查</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-label">形成判断时</div>
+      <div class="check-list">
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>我的结论是否允许不确定性？（避免非黑即白）</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>我是否考虑了对立立场的最强版本？</label>
+        </div>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <input type="checkbox" onclick="event.stopPropagation(); this.closest('.check-row').classList.toggle('done', this.checked)">
+          <label>如果新证据出现，我愿意修正判断吗？</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top:2rem; border-left-color: var(--gold);">
+      <strong>尼尔·布朗的核心提醒：</strong>批判性思维不是为了否定一切，而是为了形成更有根据的信念。保持开放、好奇、但不轻易被说服。
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>《学会提问》</strong>· Neil Browne &amp; Stuart Keeley 著<br>
+  批判性思维实操指南 · 10 Steps to Better Thinking
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+  });
+
+  // Active nav link
+  const sections = document.querySelectorAll('.section');
+  const links = document.querySelectorAll('.toc-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-link[href="#${e.target.id}"]`);
+        if (active) {
+          active.classList.add('active');
+          active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+
+  // Checkbox toggle
+  function toggleCheck(row) {
+    const cb = row.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    row.classList.toggle('done', cb.checked);
+  }
+</script>
+</body>
+</html>
